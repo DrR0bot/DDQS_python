@@ -23,10 +23,12 @@ This repository contains a system for building and querying a database of docume
 
 3. **Install PyTorch with CUDA (Optional)**:
     If you want to leverage GPU (CUDA) for faster embedding generation, install PyTorch with CUDA support:
+    Using `pip`:
     ```bash
     pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
 
-    For Conda:
+    Using `conda`:
+    If you are using Conda, install PyTorch and related libraries with CUDA support:
     ```bash
     conda install pytorch torchvision torchaudio pytorch-cuda=12.1 -c pytorch -c nvidia
 
