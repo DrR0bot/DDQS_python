@@ -50,6 +50,7 @@ The populate_database.py script loads documents from a directory, splits them in
 Once the documents are ingested into the database, you can run queries to retrieve relevant chunks based on their embeddings and generate a response using an LLM model.
     ```bash
     python query_data.py "Your query text here"
+    ````
 
 The system will retrieve the most similar document chunks based on the query text and generate a response using the context.
 
@@ -74,9 +75,9 @@ To use another embedding model, change the model_name parameter:
 
 ## Modifying Document Paths
 In `populate_database.py`, update the `DATA_PATH` variable to point to the directory where your PDF files are stored:
-    ```bash
+```bash
     DATA_PATH = "data"  # Change this to the path of your documents
-    ````
+````
 
 ## Requirements
  - Python 3.8+
