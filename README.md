@@ -23,10 +23,12 @@ This repository contains a system for building and querying a database of docume
 
 3. **Install PyTorch with CUDA (Optional)**:
     If you want to leverage GPU (CUDA) for faster embedding generation, install PyTorch with CUDA support:
+    
     Using `pip`:
     ```bash
     pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
 
+    
     Using `conda`:
     If you are using Conda, install PyTorch and related libraries with CUDA support:
     ```bash
@@ -40,3 +42,8 @@ The populate_database.py script loads documents from a directory, splits them in
     python populate_database.py [--reset]
 
 `--reset`: Optional flag to clear the existing database before populating it with new data.
+
+2. **Query the Database**
+Once the documents are ingested into the database, you can run queries to retrieve relevant chunks based on their embeddings and generate a response using an LLM model.
+    ```bash
+    python query_data.py "Your query text here"
