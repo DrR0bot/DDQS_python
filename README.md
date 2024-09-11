@@ -19,4 +19,13 @@ This repository contains a system for building and querying a database of docume
 2. **Clone the repository**:
     Install required dependencies: This project uses Python, so ensure you have it installed. Then, install the dependencies using pip:
     ```bash
-   pip install -r requirements.txtt
+   pip install -r requirements.txt
+
+3. **Install PyTorch with CUDA (Optional)**:
+    If you want to leverage GPU (CUDA) for faster embedding generation, install PyTorch with CUDA support:
+     ```bash
+    pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
+
+    For Conda:
+     ```bash
+    conda install pytorch torchvision torchaudio pytorch-cuda=12.1 -c pytorch -c nvidia
