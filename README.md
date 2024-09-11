@@ -12,31 +12,30 @@ This repository contains a system for building and querying a database of docume
 ## Installation
 
 1. **Clone the repository**:
-```bash
+   ```bash
    git clone https://github.com/DrR0bot/DDQS_python.git
    cd DDQS_python
-```
+   ````
 
 2. **Clone the repository**:
     Install required dependencies: This project uses Python, so ensure you have it installed. Then, install the dependencies using pip:
-```bash
+    ```bash
     pip install -r requirements.txt
-```
+    ```
 
 3. **Install PyTorch with CUDA (Optional)**:
     If you want to leverage GPU (CUDA) for faster embedding generation, install PyTorch with CUDA support:
     
     Using `pip`:
-```bash
+    ```bash
     pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
-    ```
+    ````
     
     Using `conda`:
     If you are using Conda, install PyTorch and related libraries with CUDA support:
-
-```bash
+    ```bash
     conda install pytorch torchvision torchaudio pytorch-cuda=12.1 -c pytorch -c nvidia
-    ```
+    ````
 
 ## Usage
 
