@@ -31,5 +31,5 @@ This repository contains a system for building and querying a database of docume
     conda install pytorch torchvision torchaudio pytorch-cuda=12.1 -c pytorch -c nvidia
 
 ## Usage
-1. **Populate the Database**
+1. **Populate the Database**/n
 The populate_database.py script loads documents from a directory, splits them into chunks, generates embeddings, and stores them in the Chroma database. If a document is modified, only the updated chunks will be added or replaced.
