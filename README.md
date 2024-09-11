@@ -12,39 +12,39 @@ This repository contains a system for building and querying a database of docume
 ## Installation
 
 1. **Clone the repository**:
-   ```bash
+```bash
    git clone https://github.com/DrR0bot/DDQS_python.git
    cd DDQS_python
-   ````
+```
 
 2. **Clone the repository**:
     Install required dependencies: This project uses Python, so ensure you have it installed. Then, install the dependencies using pip:
-    ```bash
+```bash
     pip install -r requirements.txt
-    ````
+```
 
 3. **Install PyTorch with CUDA (Optional)**:
     If you want to leverage GPU (CUDA) for faster embedding generation, install PyTorch with CUDA support:
     
     Using `pip`:
-    ```bash
+```bash
     pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
-    ````
+```
     
     Using `conda`:
     If you are using Conda, install PyTorch and related libraries with CUDA support:
-    ```bash
+```bash
     conda install pytorch torchvision torchaudio pytorch-cuda=12.1 -c pytorch -c nvidia
-    ````
+```
 
 ## Usage
 
 1. **Populate the Database**
 The populate_database.py script loads documents from a directory, splits them into chunks, generates embeddings, and stores them in the Chroma database. If a document is modified, only the updated chunks will be added or replaced.
-    ```bash
+```bash
     python populate_database.py [--reset]
-
-`--reset`: Optional flag to clear the existing database before populating it with new data.
+```
+    `--reset`: Optional flag to clear the existing database before populating it with new data.
 
 2. **Query the Database**
 Once the documents are ingested into the database, you can run queries to retrieve relevant chunks based on their embeddings and generate a response using an LLM model.
@@ -55,11 +55,12 @@ Once the documents are ingested into the database, you can run queries to retrie
 The system will retrieve the most similar document chunks based on the query text and generate a response using the context.
 
 ## File Structure
-- populate_database.py: Handles loading PDF documents, splitting them into chunks, generating embeddings, and storing/updating them in the Chroma database.
+- `populate_database.py`: Handles loading PDF documents, splitting them into chunks, generating embeddings, and storing/updating them in the Chroma database.
 - `get_embedding_function.py`: Contains the logic to select and configure the embedding model (currently using `HuggingFaceBgeEmbeddings`).
 - `query_data.py`: Handles querying the database using a similarity search and generating responses with an LLM model.
 
 ## Configuration
+
 **Changing the Embedding Model**
 By default, the system uses the `HuggingFaceBgeEmbeddings` model (BGE Base) from HuggingFace. You can change the model or switch between using CPU and GPU in `get_embedding_function.py`.
 
