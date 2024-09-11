@@ -77,3 +77,13 @@ In `populate_database.py`, update the `DATA_PATH` variable to point to the direc
     ```bash
     DATA_PATH = "data"  # Change this to the path of your documents
     ````
+
+## Requirements
+ - Python 3.8+
+ - HuggingFace Transformers
+ - PyTorch (with or without CUDA)
+ - LangChain Community Packages
+
+
+## License
+This project is licensed under the MIT License.
