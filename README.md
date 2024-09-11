@@ -64,14 +64,14 @@ The system will retrieve the most similar document chunks based on the query tex
 By default, the system uses the `HuggingFaceBgeEmbeddings` model (BGE Base) from HuggingFace. You can change the model or switch between using CPU and GPU in `get_embedding_function.py`.
 
 To change the device to GPU, modify this line in get_embedding_function.py:
-    ```bash
+```bash
     model_kwargs = {"device": "cuda"}  # Use CUDA for GPU
-    ````
+````
 
 To use another embedding model, change the model_name parameter:
-    ```bash
+```bash
     model_name = "BAAI/bge-base-en-v1.5"  # Change to your preferred model
-    ````
+````
 
 ## Modifying Document Paths
 In `populate_database.py`, update the `DATA_PATH` variable to point to the directory where your PDF files are stored:
