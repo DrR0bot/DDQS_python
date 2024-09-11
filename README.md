@@ -65,3 +65,15 @@ By default, the system uses the `HuggingFaceBgeEmbeddings` model (BGE Base) from
 To change the device to GPU, modify this line in get_embedding_function.py:
     ```bash
     model_kwargs = {"device": "cuda"}  # Use CUDA for GPU
+    ````
+
+To use another embedding model, change the model_name parameter:
+    ```bash
+    model_name = "BAAI/bge-base-en-v1.5"  # Change to your preferred model
+    ````
+
+## Modifying Document Paths
+In `populate_database.py`, update the `DATA_PATH` variable to point to the directory where your PDF files are stored:
+    ```bash
+    DATA_PATH = "data"  # Change this to the path of your documents
+    ````
