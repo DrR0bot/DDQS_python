@@ -47,3 +47,10 @@ The populate_database.py script loads documents from a directory, splits them in
 Once the documents are ingested into the database, you can run queries to retrieve relevant chunks based on their embeddings and generate a response using an LLM model.
     ```bash
     python query_data.py "Your query text here"
+
+The system will retrieve the most similar document chunks based on the query text and generate a response using the context.
+
+## File Structure
+- populate_database.py: Handles loading PDF documents, splitting them into chunks, generating embeddings, and storing/updating them in the Chroma database.
+- `get_embedding_function.py`: Contains the logic to select and configure the embedding model (currently using `HuggingFaceBgeEmbeddings`).
+- `query_data.py`: Handles querying the database using a similarity search and generating responses with an LLM model.
