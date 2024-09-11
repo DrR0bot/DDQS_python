@@ -41,9 +41,10 @@ This repository contains a system for building and querying a database of docume
 
 1. **Populate the Database**
 The populate_database.py script loads documents from a directory, splits them into chunks, generates embeddings, and stores them in the Chroma database. If a document is modified, only the updated chunks will be added or replaced.
-```bash
+    ```bash
     python populate_database.py [--reset]
-```
+    ```
+    
     `--reset`: Optional flag to clear the existing database before populating it with new data.
 
 2. **Query the Database**
