@@ -15,11 +15,13 @@ This repository contains a system for building and querying a database of docume
    ```bash
    git clone https://github.com/DrR0bot/DDQS_python.git
    cd DDQS_python
+   ````
 
 2. **Clone the repository**:
     Install required dependencies: This project uses Python, so ensure you have it installed. Then, install the dependencies using pip:
     ```bash
     pip install -r requirements.txt
+    ````
 
 3. **Install PyTorch with CUDA (Optional)**:
     If you want to leverage GPU (CUDA) for faster embedding generation, install PyTorch with CUDA support:
@@ -27,12 +29,13 @@ This repository contains a system for building and querying a database of docume
     Using `pip`:
     ```bash
     pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
-
+    ````
     
     Using `conda`:
     If you are using Conda, install PyTorch and related libraries with CUDA support:
     ```bash
     conda install pytorch torchvision torchaudio pytorch-cuda=12.1 -c pytorch -c nvidia
+    ````
 
 ## Usage
 
@@ -54,3 +57,11 @@ The system will retrieve the most similar document chunks based on the query tex
 - populate_database.py: Handles loading PDF documents, splitting them into chunks, generating embeddings, and storing/updating them in the Chroma database.
 - `get_embedding_function.py`: Contains the logic to select and configure the embedding model (currently using `HuggingFaceBgeEmbeddings`).
 - `query_data.py`: Handles querying the database using a similarity search and generating responses with an LLM model.
+
+## Configuration
+**Changing the Embedding Model**
+By default, the system uses the `HuggingFaceBgeEmbeddings` model (BGE Base) from HuggingFace. You can change the model or switch between using CPU and GPU in `get_embedding_function.py`.
+
+To change the device to GPU, modify this line in get_embedding_function.py:
+    ```bash
+    model_kwargs = {"device": "cuda"}  # Use CUDA for GPU
