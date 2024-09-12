@@ -35,10 +35,23 @@ def query_rag(query_text: str):
     # Search the DB.
     results = db.similarity_search_with_score(query_text, k=5)
 
-    context_text = "\n\n---\n\n".join([doc.page_content for doc, _score in results])
+    # Gather context from results and metadata like file name and keywords
+    context_texts = []
+    metadata_texts = []
+    
+    for doc, _score in results:
+        context_texts.append(doc.page_content)
+        metadata = doc.metadata
+        file_name = metadata.get("file_name", "Unknown File")
+        keywords = metadata.get("keywords", "No Keywords")
+        metadata_texts.append(f"File: {file_name}, Keywords: {keywords}")
+
+    # Create the context and metadata text
+    context_text = "\n\n---\n\n".join(context_texts)
+    metadata_text = "\n".join(metadata_texts)
+
     prompt_template = ChatPromptTemplate.from_template(PROMPT_TEMPLATE)
     prompt = prompt_template.format(context=context_text, question=query_text)
-    # print(prompt)
 
     model = Ollama(model="llama3")
     response_text = model.invoke(prompt)

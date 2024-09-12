@@ -1,12 +1,15 @@
 import argparse
 import os
 import shutil
+import hashlib
+from datetime import datetime
 from langchain_community.document_loaders import PyPDFDirectoryLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain.schema.document import Document
 from get_embedding_function import get_embedding_function
+from keywords_extraction import extract_and_refine_keywords
 from langchain_chroma import Chroma
-import hashlib
+
 
 CHROMA_PATH = "chroma"
 DATA_PATH = "data"
@@ -40,10 +43,11 @@ def calculate_page_hash(page_content: str):
 
 def split_documents(documents: list[Document]):
     text_splitter = RecursiveCharacterTextSplitter(
-        chunk_size=800,
-        chunk_overlap=80,
+        chunk_size=300,  # Adjust this to target sentence/paragraph granularity
+        chunk_overlap=50,
         length_function=len,
-        is_separator_regex=False,
+        is_separator_regex=True,  # Allow regex-based splitting (for more control)
+        separators=["\n\n", ".", "?", "!"]  # Paragraph/sentence split markers
     )
     return text_splitter.split_documents(documents)
 
@@ -107,25 +111,35 @@ def calculate_chunk_ids(chunks):
         page = chunk.metadata.get("page")
         current_page_id = f"{source}:{page}"
 
-        # If the page ID is the same as the last one, increment the index.
         if current_page_id == last_page_id:
             current_chunk_index += 1
         else:
             current_chunk_index = 0
 
-        # Calculate the chunk ID.
         chunk_id = f"{current_page_id}:{current_chunk_index}"
         last_page_id = current_page_id
 
-        # Add the chunk ID to the metadata.
         chunk.metadata["id"] = chunk_id
-
-        # Calculate the hash of the chunk's content and store it in metadata.
         page_content = chunk.page_content
         chunk_hash = calculate_page_hash(page_content)
         chunk.metadata["hash"] = chunk_hash
 
+        file_name_with_extension = os.path.basename(source)
+        chunk.metadata["file_name"] = file_name_with_extension
+
+        file_stats = os.stat(source)
+        creation_date = datetime.fromtimestamp(file_stats.st_ctime).strftime('%Y-%m-%d %H:%M:%S')
+        modification_date = datetime.fromtimestamp(file_stats.st_mtime).strftime('%Y-%m-%d %H:%M:%S')
+
+        chunk.metadata["creation_date"] = creation_date
+        chunk.metadata["modification_date"] = modification_date
+
+        # Convert keywords list to comma-separated string
+        keywords = extract_and_refine_keywords(page_content)
+        chunk.metadata["keywords"] = ", ".join(keywords)  # Convert list to string
+
     return chunks
+
 
 
 def clear_database():
