@@ -64,3 +64,4 @@ def query_rag(query_text: str):
 
 if __name__ == "__main__":
     main()
+    

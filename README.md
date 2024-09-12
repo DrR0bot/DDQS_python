@@ -23,7 +23,14 @@ This repository contains a system for building and querying a database of docume
     pip install -r requirements.txt
     ```
 
-3. **Install PyTorch with CUDA (Optional)**:
+
+3. **Download other requirements**:
+    Dowload the required `Spacy` package within the `venv`
+    ```bash
+    python -m spacy download en_core_web_sm
+    ````
+
+4. **Install PyTorch with CUDA (Optional)**:
     If you want to leverage GPU (CUDA) for faster embedding generation, install PyTorch with CUDA support:
     
     Using `pip`:

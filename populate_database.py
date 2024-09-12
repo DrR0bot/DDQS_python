@@ -43,8 +43,8 @@ def calculate_page_hash(page_content: str):
 
 def split_documents(documents: list[Document]):
     text_splitter = RecursiveCharacterTextSplitter(
-        chunk_size=300,  # Adjust this to target sentence/paragraph granularity
-        chunk_overlap=50,
+        chunk_size=800,  # Adjust this to target sentence/paragraph granularity
+        chunk_overlap=150,
         length_function=len,
         is_separator_regex=True,  # Allow regex-based splitting (for more control)
         separators=["\n\n", ".", "?", "!"]  # Paragraph/sentence split markers
